@@ -1,22 +1,22 @@
 // Select DOM elements
-const taskInput = document.getElementById('taskInput');
-const addButton = document.getElementById('addButton');
-const taskList = document.getElementById('taskList');
+const taskInput = document.getElementById('task-input');
+const addButton = document.getElementById('add-task-btn');
+const taskList = document.getElementById('task-list');
 
-// Load tasks when DOM is ready
+// Load tasks on page load
 document.addEventListener('DOMContentLoaded', function () {
     loadTasks();
 });
 
-// Define the loadTasks function globally
+// Globally defined function to load tasks from Local Storage
 function loadTasks() {
     const storedTasks = JSON.parse(localStorage.getItem('tasks') || '[]');
     storedTasks.forEach(function (taskText) {
-        addTask(taskText, false); // false prevents saving again
+        addTask(taskText, false); // false = don't save again
     });
 }
 
-// Function to add a task to the list and optionally to Local Storage
+// Add a task to the DOM and optionally save it
 function addTask(taskText, save = true) {
     if (!taskText.trim()) return;
 
@@ -41,7 +41,7 @@ function addTask(taskText, save = true) {
     }
 }
 
-// Add button click event
+// Handle Add Task button click
 addButton.addEventListener('click', function () {
     const taskText = taskInput.value;
     addTask(taskText);
